@@ -1,0 +1,19 @@
+﻿@page "/WaitList"
+@model IndexModel
+@{
+    ViewData["Title"] = "WaitList";
+}
+
+<div class="text-center">
+    <h1 class="display-4">WaitingTables</h1>
+</div>
+
+<form method="post">
+    <input asp-for="PartyName" placeholder="Party Name"/>
+    <input asp-for="PartySize" placeholder="Party Size/>
+    <select asp-for="PartyPreference">
+        <option></option>
+    </select>
+    <input asp-for="PartyPhoneNumber" placeholder="Party Phone Number"/>
+    <button type="submit">Add To WaitList</button>
+</form>
