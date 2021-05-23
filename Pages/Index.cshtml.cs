@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPDotNetRazorApp.Pages
 {
@@ -19,7 +19,11 @@ namespace ASPDotNetRazorApp.Pages
 
         public void OnGet()
         {
-
+            PartyPreferences = new List<SelectListItem>
+            {
+                new SelectListItem {Value = "In", Text = "Inside"},
+                new SelectListItem {Value = "Out", Text ="Outside"}
+            };
         }
     }
 }

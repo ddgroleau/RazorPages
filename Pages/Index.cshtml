@@ -8,12 +8,16 @@
     <h1 class="display-4">WaitingTables</h1>
 </div>
 
-<form method="post">
-    <input asp-for="PartyName" placeholder="Party Name"/>
-    <input asp-for="PartySize" placeholder="Party Size/>
-    <select asp-for="PartyPreference">
-        <option></option>
+<form method="post" class="waitListForm">
+    <label for="PartyName">Party Name: </label>
+    <input asp-for="PartyName" placeholder="Party Name" />
+    <label for="PartyName">Party Size: </label>
+    <input asp-for="PartySize" placeholder="Party Size   />
+    <label for="PartyPreference">Preference: </label>
+    <select class="custom-select" asp-for="PartyPreference" asp-items="Model.PartyPreferences">
+        <option value="Default">Inside or Outside?</option>
     </select>
-    <input asp-for="PartyPhoneNumber" placeholder="Party Phone Number"/>
+    <label for="PartyPhoneNumber">Phone Number: </label>
+    <input asp-for="PartyPhoneNumber" placeholder="Party Phone Number" />
     <button type="submit">Add To WaitList</button>
 </form>
