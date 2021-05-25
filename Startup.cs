@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ASPDotNetRazorApp.Data;
 
 namespace ASPDotNetRazorApp
 {
@@ -23,6 +25,10 @@ namespace ASPDotNetRazorApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //********** Database Setup Component***********
+            services.AddDbContext<PartyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AspDotNetRazorApp")));
+            //make sure to add package Microsoft.EntityFrameworkCore / Microsoft.EntityFrameworkCore.SqlServer
+            
             services.AddRazorPages();
         }
 

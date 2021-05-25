@@ -6,15 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
-namespace ASPDotNetRazorApp.Pages
+namespace ASPDotNetRazorApp.Models
 {
-    public class IndexModel : PageModel
+    public class PartyModel : PageModel
     {
+        
+        [BindProperty]
         public string PartyName { get; set; }
+        [BindProperty]
         public int PartySize { get; set; }
+        [BindProperty]
         public string PartyPreference { get; set; }
         public List<SelectListItem> PartyPreferences { get; set; }
+        [BindProperty]
         public string PartyPhoneNumber { get; set; }
 
         public void OnGet()
@@ -25,5 +31,11 @@ namespace ASPDotNetRazorApp.Pages
                 new SelectListItem {Value = "Out", Text ="Outside"}
             };
         }
+        public IActionResult OnPost()
+        {
+            Console.WriteLine($"Incoming party,{PartyName} party of {PartySize}. Seat {PartyPreference} and contact at {PartyPhoneNumber}.");
+            return RedirectToPage("WaitList", new PartyModel());
+        }
     }
+    
 }
