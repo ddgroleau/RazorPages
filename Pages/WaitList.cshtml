@@ -1,5 +1,5 @@
 ﻿@page "/WaitList"
-@model Models.PartyModel
+@model Pages.WaitListModel
 @{
     ViewData["Title"] = "WaitList";
 }
@@ -10,14 +10,62 @@
 
 <form method="post" class="waitListForm">
     <label for="PartyName">Party Name: </label>
-    <input asp-for="PartyName" placeholder="Party Name" />
+    <input asp-for="Party.PartyName" placeholder="Party Name" />
     <label for="PartyName">Party Size: </label>
-    <input asp-for="PartySize" placeholder="Party Size   />
+    <input asp-for="Party.PartySize" placeholder="Party Size"     />
     <label for="PartyPreference">Preference: </label>
-    <select class="custom-select" asp-for="PartyPreference" asp-items="Model.PartyPreferences">
+    <select class="custom-select" asp-for="Party.PartyPreference" asp-items="Model.PartyPreferences">
         <option value="Default">Inside or Outside?</option>
     </select>
     <label for="PartyPhoneNumber">Phone Number: </label>
-    <input asp-for="PartyPhoneNumber" placeholder="Party Phone Number" />
+    <input asp-for="Party.PartyPhoneNumber" placeholder="Party Phone Number" />
     <button type="submit">Add To WaitList</button>
 </form>
+
+
+<div class="d-flex bg-primary text-white">
+    <div class="p-2" style="flex:0 0 10%">
+        PartyName
+    </div>
+    <div class="p-2" style="flex:1 0 auto">
+        PartySize
+    </div>
+    <div class="p-2" style="flex:0 0 25%">
+        PartyPreference
+    </div>
+    <div class="p-2" style="flex:0 0 25%">
+        PartyPhoneNumber
+    </div>
+</div>
+
+@{ if (Model.Parties != null)
+    {
+        foreach (var item in Model.Parties)
+        {
+            <div class="d-flex border-left border-right border-bottom border-primary">
+
+                <div class="p-2" style="flex:0 0 10%">
+                    @item.PartyName
+                </div>
+
+                <div class="p-2" style="flex:1 0 auto">
+                    @item.PartySize
+                </div>
+
+                <div class="p-2" style="flex:1 0 auto">
+                    @item.PartyPreference
+                </div>
+
+                <div class="p-2" style="flex:1 0 auto">
+                    @item.PartyPhoneNumber
+                </div>
+
+                <form class="p-2 btn-group" style="flex:0 0 25%" role="group" method="post">
+                    <input type="submit" asp-page-handler="delete" value="Delete" asp-route-partyName="@item.PartyName"class="btn btn-danger btn-sm" />
+                </form>
+
+            </div>
+        }
+    }
+}
+
